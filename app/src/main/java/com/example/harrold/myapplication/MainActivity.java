@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Button addButton = (Button) findViewById(R.id.AddButton);
         Button editButton = (Button) findViewById(R.id.EditButton);
 
+        // Test to see if I can use git properly
+
         addButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
