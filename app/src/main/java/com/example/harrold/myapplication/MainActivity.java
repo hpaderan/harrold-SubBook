@@ -105,3 +105,26 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 }
+
+/**
+ * TOMORROW:
+ *
+ *      NEED to make the Subs class
+ *
+ *      AddButton on main activity:
+ *          - change activity
+ *
+ *      EditButton on main activity:
+ *          - redesign
+ *
+ *      View list
+ *
+ *      Save/Load list
+ *      -----------------
+ *      ON ACTIVITY 2:
+ *
+ *      inputs: EditTexts, calendar viewer
+ *
+ *      AddButton:
+ *          - check inputs
+ */
