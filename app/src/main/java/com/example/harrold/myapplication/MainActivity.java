@@ -1,6 +1,7 @@
 package com.example.harrold.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String FILENAME = "file.sav";
     private ListView allSubsList;
 
     @Override
@@ -27,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         allSubsList = (ListView) findViewById(R.id.allSubsList);
-        Button addButton = (Button) findViewById(R.id.AddButton);
+        Button adderButton = (Button) findViewById(R.id.AdderButton);
         Button editButton = (Button) findViewById(R.id.EditButton);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        adderButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 String text = bodyText.getText().toString();
                 saveInFile(text, new Date(System.currentTimeMillis()));
                 */
+                Intent myIntent = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(myIntent);
 
                 finish();
 
@@ -51,24 +55,20 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onStart();
 
-        /*
-        String[] tweets = loadFromFile();
+        String[] subs = loadFromFile();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.list_item, tweets);
+                R.layout.list_item, subs);
         allSubsList.setAdapter(adapter);
-        */
-
     }
 
     private String[] loadFromFile() {
-        /*
-        ArrayList<String> tweets = new ArrayList<String>();
+        ArrayList<String> subs = new ArrayList<String>();
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line = in.readLine();
             while (line != null) {
-                tweets.add(line);
+                subs.add(line);
                 line = in.readLine();
             }
 
@@ -79,12 +79,7 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return tweets.toArray(new String[tweets.size()]);
-        */
-
-        //remember to take this off
-        return null;
-
+        return subs.toArray(new String[subs.size()]);
     }
 
     private void saveInFile(String text, Date date) {
@@ -109,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 /**
  * TOMORROW:
  *
- *      NEED to make the Subs class
+ *      NEED to make the Subs class +
  *
  *      AddButton on main activity:
  *          - change activity
@@ -117,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
  *      EditButton on main activity:
  *          - redesign
  *
- *      View list
+ *      View list +
  *
- *      Save/Load list
+ *      Save/Load list +
  *      -----------------
  *      ON ACTIVITY 2:
  *
