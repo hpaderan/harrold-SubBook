@@ -7,9 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Date;
 
 import static android.provider.Telephony.Mms.Part.FILENAME;
@@ -47,17 +51,21 @@ public class AddActivity extends AppCompatActivity {
 
     private void saveInFile(String text, Date date) {
         try {
+
             FileOutputStream fos = openFileOutput(FILENAME,
-                    Context.MODE_APPEND);
-            fos.write(new String(date.toString() + " | " + text)
-                    .getBytes());
-            fos.close();
+                    Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(subsList, out);
+            out.flush();
+
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }

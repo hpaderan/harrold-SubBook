@@ -9,26 +9,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
-    private ListView allSubsList;
+    private ListView oldSubsList;
+
+    private ArrayList<Sub> subsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        allSubsList = (ListView) findViewById(R.id.allSubsList);
+        oldSubsList = (ListView) findViewById(R.id.oldSubsList);
         Button adderButton = (Button) findViewById(R.id.AdderButton);
         Button editButton = (Button) findViewById(R.id.EditButton);
 
@@ -55,35 +61,35 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onStart();
 
-        String[] subs = loadFromFile();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.list_item, subs);
-        allSubsList.setAdapter(adapter);
+        loadFromFile();
+        ArrayAdapter<Sub> adapter = new ArrayAdapter<Sub>(this,
+                R.layout.list_item, subsList);
+        oldSubsList.setAdapter(adapter);
     }
 
-    private String[] loadFromFile() {
-        ArrayList<String> subs = new ArrayList<String>();
+    private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            String line = in.readLine();
-            while (line != null) {
-                subs.add(line);
-                line = in.readLine();
-            }
+
+            Gson gson = new Gson();
+
+            // Taken https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            // 2018-02-04
+            Type listType = new TypeToken<ArrayList<Sub>>(){}.getType();
+            subsList = gson.fromJson(in, listType);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            subsList = new ArrayList<Sub>();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return subs.toArray(new String[subs.size()]);
     }
 
-    private void saveInFile(String text, Date date) {
-        /*
+  /*  private void saveInFile(String text, Date date) {
+
         try {
             FileOutputStream fos = openFileOutput(FILENAME,
                     Context.MODE_APPEND);
@@ -97,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        */
-    }
+
+    } */
 }
 
 /**

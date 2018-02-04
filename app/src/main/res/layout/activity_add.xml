@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
     <EditText
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Date Started (yyyy-mm-dd)" />
+        android:hint="Date Started (yyyy-mm-dd)" />
 
     <EditText
         android:id="@+id/chargeEditText"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Monthly Charge" />
+        android:hint="Monthly Charge" />
 
     <EditText
         android:id="@+id/commentEditText"
@@ -47,7 +47,7 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:singleLine="false"
-        android:text="Comment" />
+        android:hint="Comment" />
 
     <Button
         android:id="@+id/addButton"
