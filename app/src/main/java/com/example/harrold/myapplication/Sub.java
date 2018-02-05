@@ -9,29 +9,29 @@ import java.util.Date;
 public class Sub {
 
     private String name;
-    private Date dateCreated;
+    private String dateCreated;
     private String costMonthly;
     private String comment;
 
-    public Sub(String name, Date date, String costMonthly, String comment) {
+    public Sub(String name, String date, String costMonthly, String comment) {
         this.name = name;
         this.dateCreated = date;
         this.costMonthly = costMonthly;
         this.comment = comment;
     }
 
-    public Sub(String name, Date date, String costMonthly) {
+    public Sub(String name, String date, String costMonthly) {
         this.name = name;
         this.dateCreated = date;
         this.costMonthly = costMonthly;
         this.comment = "";
     }
 
-    public Date getDate() {
+    public String getDate() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date date) {
+    public void setDateCreated(String date) {
         this.dateCreated = date;
     }
 
@@ -58,5 +58,11 @@ public class Sub {
 
     public void setComment(String newComment) {
         comment = newComment;
+    }
+
+    public String toString() {
+        String str = new String(name + "\t\t\t$" + costMonthly + "\n"
+                + dateCreated + "\n" + comment);
+        return str;
     }
 }

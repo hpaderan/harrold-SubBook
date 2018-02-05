@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.example.harrold.myapplication.AddActivity">
 
     <TextView
@@ -33,7 +34,7 @@
         android:hint="Date Started (yyyy-mm-dd)" />
 
     <EditText
-        android:id="@+id/chargeEditText"
+        android:id="@+id/costEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

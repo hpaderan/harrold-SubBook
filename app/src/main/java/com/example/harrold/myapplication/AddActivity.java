@@ -1,6 +1,8 @@
 package com.example.harrold.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +24,7 @@ public class AddActivity extends AppCompatActivity {
 
     private EditText nameText;
     private EditText dateText;
-    private EditText chargeText;
+    private EditText costText;
     private EditText commentText;
 
     @Override
@@ -32,7 +34,7 @@ public class AddActivity extends AppCompatActivity {
 
         nameText = findViewById(R.id.nameEditText);
         dateText = findViewById(R.id.dateEditText);
-        chargeText = findViewById(R.id.chargeEditText);
+        costText = findViewById(R.id.costEditText);
         commentText = findViewById(R.id.commentEditText);
         Button addButton = findViewById(R.id.addButton);
 
@@ -40,16 +42,25 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-/*
-                CHECK INPUTS: SAVE
 
-                String text = bodyText.getText().toString();
-                saveInFile(text, new Date(System.currentTimeMillis()));  */
+                String subName = nameText.getText().toString();
+                String subDate = dateText.getText().toString();
+                String subCost = costText.getText().toString();
+                String subComment = nameText.getText().toString();
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("subName", subName);
+                returnIntent.putExtra("subDate", subDate);
+                returnIntent.putExtra("subCost", subCost);
+                returnIntent.putExtra("subComment", subComment);
+                setResult(Activity.RESULT_OK, returnIntent);
+
+                finish();
             }
         });
     }
 
-    private void saveInFile(String text, Date date) {
+ /*   private void saveInFile(String text, Date date) {
         try {
 
             FileOutputStream fos = openFileOutput(FILENAME,
@@ -67,5 +78,5 @@ public class AddActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             throw new RuntimeException();
         }
-    }
+    }  */
 }

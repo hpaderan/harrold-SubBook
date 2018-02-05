@@ -16,7 +16,7 @@
         android:layout_alignStart="@+id/oldSubsList"
         android:text="Your Monthly Total:"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        android:textSize="24sp"
+        android:textSize="20sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -32,6 +32,7 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_weight="1"
+        android:background="@drawable/bg_key"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="47dp" />
 
